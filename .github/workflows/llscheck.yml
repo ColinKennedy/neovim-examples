@@ -56,4 +56,5 @@ jobs:
 
     - name: Test
       run: |
-        llscheck CONFIGURATION=minimal_typechecking .
+        cd minimal_typechecking
+        VIMRUNTIME="`nvim --clean --headless --cmd 'lua io.write(os.getenv("VIMRUNTIME"))' --cmd 'quit'`" llscheck . --no-color | grep --quiet "Total 1: 1 Warnings in 1 files" || exit 1
